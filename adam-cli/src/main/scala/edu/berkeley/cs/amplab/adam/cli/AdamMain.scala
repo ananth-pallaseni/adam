@@ -31,7 +31,8 @@ object AdamMain extends Logging {
     CompareAdam,
     ComputeVariants,
     Adam2Vcf,
-    Vcf2Adam)
+    Vcf2Adam,
+    Fasta2Adam)
 
   private def printCommands() {
     println("\n")
