@@ -102,8 +102,13 @@ private[rdd] class Reads2PileupProcessor extends Serializable with Logging {
         // INSERT
         case CigarOperator.I =>
           var insertPos = 0
-
-          for (b <- new StringOps(record.getSequence.toString.substring(readPos, readPos + cigarElement.getLength - 1))) {
+println("LLLLLLLLLLLLLL")
+println(record.getSequence.toString)
+println(readPos)
+println(cigarElement.getLength-1)
+          for (b <- new StringOps(record.getSequence.toString.substring(readPos, readPos + cigarElement.getLength))) {
+            
+          println("QQQQQQQQQQQQQQQQ")
             val insertBase = Base.valueOf(b.toString)
 
             val pileup = populatePileupFromReference(record, referencePos, isReverseStrand, readPos)
@@ -117,6 +122,8 @@ private[rdd] class Reads2PileupProcessor extends Serializable with Logging {
             readPos += 1
             insertPos += 1
           }
+
+          referencePos += 1
         // MATCH (sequence match or mismatch)
         case CigarOperator.M =>
 
